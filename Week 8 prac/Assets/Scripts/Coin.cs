@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private float point = 5;
+    [SerializeField] private float point;
 
     public float GetPoint()
     {
