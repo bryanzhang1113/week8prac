@@ -7,8 +7,9 @@ using TMPro;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float speed;
-    float score = 0;
+    float score;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] bool player2;
 
     private PlayerAction action;
     private InputAction walk;
@@ -16,7 +17,14 @@ public class Player : MonoBehaviour
     void Awake()
     {
         action = new PlayerAction();
-        walk = action.Movement.Walk;
+        if(player2 == false)
+        {
+            walk = action.Movement.Walk;
+        } else 
+        {
+            walk = action.Movement.Player2;
+        }
+        
     }
 
     void OnEnable()
@@ -46,8 +54,8 @@ public class Player : MonoBehaviour
         {
             GameObject coin = collision.gameObject;
             float coinPoint = coin.GetComponent<Coin>().GetPoint();
-            Debug.Log(coinPoint);
             score += coinPoint;
+            
             Destroy(coin);
         }
     }
